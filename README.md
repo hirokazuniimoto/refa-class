@@ -21,9 +21,9 @@ An in-depth paragraph about your project and overview of use.
 
 * test environment (dev version)  
   If you want to run the development version of refa-class, you can install from pypi test environment:  
-    [refaclass · TestPyPI](https://test.pypi.org/project/refaclass/1.0.16/)
+    [refaclass · TestPyPI](https://test.pypi.org/project/refaclass/)
     ```
-    pip install -i https://test.pypi.org/simple/ refaclass==1.0.16  
+    pip install -i https://test.pypi.org/simple/ refaclass 
     ```
 
 * local environment  
@@ -40,7 +40,7 @@ An in-depth paragraph about your project and overview of use.
 * How to run the program
 * Step-by-step bullets
 
-Now you can check python `class` just like this:
+you can check python `class` just like this:
 ```
 cd [project]
 refaclass
