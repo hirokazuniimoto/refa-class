@@ -1,4 +1,3 @@
-# Template:
 [![<ORG_NAME>](https://circleci.com/gh/hirokazuniimoto/refa-class.svg?style=svg)](https://app.circleci.com/pipelines/github/hirokazuniimoto/refa-class)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/refaclass)
 
