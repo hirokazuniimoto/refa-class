@@ -33,6 +33,15 @@ An in-depth paragraph about your project and overview of use.
     pip install -i https://test.pypi.org/simple/ refaclass==1.0.16  
     ```
 
+* local environment  
+  If you want to run the code locally, or change or modify it, you can install from the repo directly:
+  ```
+  git clone https://github.com/hirokazuniimoto/refa-class.git  
+  cd refa-class
+  docker-compose build
+  docker-compose up
+  ```
+
 ### Executing program
 
 * How to run the program
