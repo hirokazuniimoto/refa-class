@@ -1,5 +1,5 @@
-from source_code_reader import sourceCodeReader
-from class_handler import ClassHandler
+from .preprocess.class_handler import ClassHandler
+from .preprocess.source_code_reader import sourceCodeReader
 
 
 def main():
@@ -13,9 +13,9 @@ def main():
         # print class and method names respectively
         if class_names:
             for class_name, method_names in class_names.items():
-                if class_name != '':  # if class name is empty, skip
+                if class_name != "":  # if class name is empty, skip
                     print(class_name, method_names)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

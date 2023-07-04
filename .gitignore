@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 # addtional ignore
+memo.md 
+memo.txt
