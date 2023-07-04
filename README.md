@@ -1,3 +1,7 @@
+[![CircleCI](https://circleci.com/gh/google/pybadges.svg?style=svg)](https://circleci.com/gh/google/pybadges)
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/refaclass)
+
 # refa-class
 
 Simple overview of use/purpose.

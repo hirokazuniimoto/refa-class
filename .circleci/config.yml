@@ -1,0 +1,56 @@
+version: 2.1
+executors:
+  default:
+    working_directory: ~/workspace
+    docker:
+      - image: circleci/python:3.8.12
+        environment:
+          PYTHONUNBUFFERED: 1
+          TZ: Asia/Tokyo
+
+jobs:
+  lint:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          name: update apt
+          command: sudo apt-get update
+      - run:
+          name: install requirements
+          command: sudo pip install -r requirements.txt
+      - run:
+          name: lint with black
+          command: black . --check
+      - run:
+          name: lint with flake8
+          command: pflake8 .
+      - run:
+          name: lint with isort
+          command: isort . --check-only
+
+  test:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          name: update apt
+          command: sudo apt-get update
+      - run:
+          name: pip install
+          command: |
+            sudo pip install -r requirements.txt
+            sudo pip install coverage codecov
+      - run:
+          name: test
+          command: ls
+      - run:
+          name: coverage
+          command: ls
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - lint
+      - test
