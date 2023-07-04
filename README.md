@@ -1,10 +1,3 @@
-## インストール
-::: pypi 
-
-
-::: test environment (dev version)
-[refaclass · TestPyPI](https://test.pypi.org/project/refaclass/1.0.16/)
-
 # refa-class
 
 Simple overview of use/purpose.
