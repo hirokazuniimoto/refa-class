@@ -24,7 +24,7 @@ jobs:
           command: black . --check
       - run:
           name: lint with flake8
-          command: pflake8 .
+          command: flake8 .
       - run:
           name: lint with isort
           command: isort . --check-only
@@ -43,10 +43,7 @@ jobs:
             sudo pip install coverage codecov
       - run:
           name: test
-          command: ls
-      - run:
-          name: coverage
-          command: ls
+          command: python -m unittest discover tests
 
 workflows:
   version: 2
