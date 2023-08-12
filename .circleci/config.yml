@@ -40,7 +40,6 @@ jobs:
           name: pip install
           command: |
             sudo pip install -r requirements.txt
-            sudo pip install coverage codecov
       - run:
           name: test
           command: python -m unittest discover tests
