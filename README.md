@@ -32,22 +32,45 @@ An in-depth paragraph about your project and overview of use.
 * local environment  
   If you want to run the code locally, or change or modify it, you can install from the repo directly:
   ```
-  git clone https://github.com/hirokazuniimoto/refa-class.git  
-  cd refa-class
-  docker-compose build
-  docker-compose up
+  git clone https://github.com/hirokazuniimoto/refa-class.git    
+  ```
+  you can use remote containers extension to create container 
+
+  - install and setup remote-containers extension in vscode
+  https://code.visualstudio.com/docs/remote/containers
+
+  ```
+  python3 -m refaclass.main
+
+  The following arguments are optional:
+  --dir            directory path
   ```
 
 ### Executing program
-
-* How to run the program
-* Step-by-step bullets
 
 you can check python `class` just like this:
 ```
 cd [project]
 refaclass
+
+The following arguments are optional:
+  --dir            directory path
 ```
+
+### Test
+
+* run test
+```
+python -m unittest discover tests
+```
+* measure coverage
+```
+python -m coverage run -m unittest discover tests
+python -m coverage report -m
+```
+
+### Settings
+
 
 ## Help
 

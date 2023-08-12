@@ -11,7 +11,11 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"ms-python.flake8",
+				"ms-python.vscode-pylance",
+				"ms-python.python",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	}
