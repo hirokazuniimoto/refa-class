@@ -18,15 +18,15 @@ class TestClassHandler(unittest.TestCase):
 
     def test_class_handler_with_invalid_source_code(self):
         with self.assertRaises(SourceCodeSyntaxError):
-            handler = ClassHandler("invalid source code")
+            ClassHandler("invalid source code")
 
     def test_class_handler_with_empty_source_code(self):
         with self.assertRaises(InvalidSourceCodeError):
-            handler = ClassHandler("")
+            ClassHandler("")
 
     def test_class_handler_with_not_string_source_code(self):
         with self.assertRaises(InvalidSourceCodeError):
-            handler = ClassHandler(11)
+            ClassHandler(11)
 
 
 class TestClassNameVisitor(unittest.TestCase):

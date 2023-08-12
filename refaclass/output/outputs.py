@@ -17,15 +17,19 @@ class TerminalOutput(AbstractOutput):
         for class_name, result in results.items():
             if result["result"] == "NG":
                 ng_count += 1
-                print(class_name + " : " + Fore.RED + result["result"] + Style.RESET_ALL)
+                print(
+                    class_name + " : " + Fore.RED + result["result"] + Style.RESET_ALL
+                )
                 # indent for easy to read
                 print("  details: ")
                 for label, sentences in result["violation_details"].items():
                     print("    group: " + str(label))
                     for sentence in sentences:
-                        print("    - " + sentence[len(class_name) + 1:])
+                        print("    - " + sentence[len(class_name) + 1 :])
             else:
-                print(class_name + " : " + Fore.GREEN + result["result"] + Style.RESET_ALL)
+                print(
+                    class_name + " : " + Fore.GREEN + result["result"] + Style.RESET_ALL
+                )
 
         print(Style.RESET_ALL)
 

@@ -21,8 +21,17 @@ class RefaclassExecutor:
                     class_source=class_source
                 )
                 if is_detect_violation:
-                    detect_violation_results[class_name] = {"result": "NG", "method_names": method_names, "violation_details": detector.violation_details(class_source=class_source, n_clusters=optimal_n_clusters)}
+                    detect_violation_results[class_name] = {
+                        "result": "NG",
+                        "method_names": method_names,
+                        "violation_details": detector.violation_details(
+                            class_source=class_source, n_clusters=optimal_n_clusters
+                        ),
+                    }
                 else:
-                    detect_violation_results[class_name] = {"result": "OK", "method_names": method_names}
+                    detect_violation_results[class_name] = {
+                        "result": "OK",
+                        "method_names": method_names,
+                    }
 
         return DetectViolationResults(results=detect_violation_results)

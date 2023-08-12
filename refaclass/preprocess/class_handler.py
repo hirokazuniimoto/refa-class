@@ -36,12 +36,12 @@ class ClassHandler:
         if not isinstance(source_code, str):
             raise InvalidSourceCodeError("source code is not string")
 
-        if not self.__check_sorce_code_syntax(source_code):
+        if not self.__check_source_code_syntax(source_code):
             raise SourceCodeSyntaxError(source_code)
 
         self.__source_code = source_code
 
-    def __check_sorce_code_syntax(self, source_code: str) -> bool:
+    def __check_source_code_syntax(self, source_code: str) -> bool:
         try:
             ast.parse(source_code)
             return True

@@ -1,10 +1,7 @@
 import abc
-from typing import Final
 
 from refaclass.base import classSource
 from refaclass.core.clustering import AbstractClusteringMethod
-from refaclass.core.model import AbstractModel
-from refaclass.settings import RefaclassSettings
 
 
 class AbstractDetector(abc.ABC):

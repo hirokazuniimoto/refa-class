@@ -8,7 +8,7 @@ class DirectoryNotFoundError(Exception):
 
 class ParserNotFoundError(Exception):
     def __str__(self):
-        return f"Parser is not found."
+        return "Parser is not found."
 
 
 class InvalidSourceCodeError(Exception):

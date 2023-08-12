@@ -1,5 +1,4 @@
 import argparse
-from typing import Final
 
 from .core.clustering import KMeansClusteringMethod
 from .core.detection import SingleResponsibilityPrincipleDetector
@@ -7,7 +6,6 @@ from .core.executor import RefaclassExecutor
 from .core.model import FastTextModel
 from .output.outputs import CsvOutput, TerminalOutput
 from .preprocess.argument_handler import ArgumentHandler
-from .preprocess.class_handler import ClassHandler
 from .preprocess.source_code_reader import sourceCodeReader
 from .settings import RefaclassSettings
 
