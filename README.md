@@ -33,11 +33,7 @@ This library detects classes in your source code that may violate the "Single Re
   ```
   git clone https://github.com/hirokazuniimoto/refa-class.git    
   ```
-  you can use remote containers extension to create container 
-
-  - install and setup remote-containers extension in vscode
-  https://code.visualstudio.com/docs/remote/containers
-
+  
   ```
   python3 -m refaclass.main
 
@@ -46,9 +42,14 @@ This library detects classes in your source code that may violate the "Single Re
   -o --output         output [terminal csv]
   ```
 
+  you can use remote containers extension to create container
+  - install and setup remote-containers extension in vscode
+  https://code.visualstudio.com/docs/remote/containers
+
 ### Executing program
 
 * you can check python `class` just like this:
+
   ```
   cd [project]
   refaclass
