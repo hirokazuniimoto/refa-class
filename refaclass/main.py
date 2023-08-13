@@ -10,7 +10,9 @@ from .preprocess.source_code_reader import sourceCodeReader
 from .settings import RefaclassSettings
 
 
-def main(args: list = None):
+def main(
+    args: ArgumentHandler = ArgumentHandler(parser=argparse.ArgumentParser()),
+) -> None:
     # preprocessing
     reader = sourceCodeReader(dir=args.dir)
     source_codes = reader.get_source_codes()
@@ -36,5 +38,4 @@ def main(args: list = None):
 
 
 if __name__ == "__main__":
-    args = ArgumentHandler(parser=argparse.ArgumentParser())
-    main(args=args)
+    main(args=ArgumentHandler(parser=argparse.ArgumentParser()))

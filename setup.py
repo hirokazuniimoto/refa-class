@@ -18,13 +18,21 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="refaclass",
-    version="1.1.6",
+    version="1.1.9",
     author="Hirokazu Niimoto",
     description="A Python package for RefaClass",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=["refaclass", "refaclass.preprocess", "refaclass.core", "refaclass.model"],
+    packages=[
+        "refaclass",
+        "refaclass.preprocess",
+        "refaclass.core",
+        "refaclass.model",
+        "refaclass.output",
+    ],
     install_requires=_requirements(),
     entry_points={"console_scripts": ["refaclass = refaclass.main:main"]},
     url="https://github.com/hirokazuniimoto/refa-class",
+    license="MIT",
+    python_requires=">=3.8",
 )

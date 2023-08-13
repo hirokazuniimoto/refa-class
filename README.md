@@ -21,13 +21,6 @@ This library detects classes in your source code that may violate the "Single Re
     pip install refaclass
     ```
 
-* test environment (dev version)  
-  If you want to run the development version of refa-class, you can install from pypi test environment:  
-    [refaclass · TestPyPI](https://test.pypi.org/project/refaclass/)
-    ```
-    pip install -i https://test.pypi.org/simple/ refaclass 
-    ```
-
 * local environment  
   If you want to run the code locally, or change or modify it, you can install from the repo directly:
   ```
@@ -36,6 +29,12 @@ This library detects classes in your source code that may violate the "Single Re
   pip install -r requirements.txt
   pip install -r requirements.dev.txt
   ```
+
+  manually download the binary file ( [cc.en.300.bin](リンク) ) of the model and place it under the following directory. you can also change to another model if necessary. in that case, change the file name to `cc.en.300.bin`.　
+
+  `refaclass/model/cc.en.300.bin`   
+
+  run in local environment
   
   ```
   python3 -m refaclass.main
