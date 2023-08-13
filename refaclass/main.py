@@ -1,4 +1,5 @@
 import argparse
+import warnings
 
 from .core.clustering import KMeansClusteringMethod
 from .core.detection import SingleResponsibilityPrincipleDetector
@@ -8,6 +9,8 @@ from .output.outputs import CsvOutput, TerminalOutput
 from .preprocess.argument_handler import ArgumentHandler
 from .preprocess.source_code_reader import sourceCodeReader
 from .settings import RefaclassSettings
+
+warnings.simplefilter("ignore", FutureWarning)
 
 
 def main(

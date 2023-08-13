@@ -18,7 +18,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="refaclass",
-    version="1.1.9",
+    version="1.4.1",
     author="Hirokazu Niimoto",
     description="A Python package for RefaClass",
     long_description=long_description,
@@ -27,7 +27,6 @@ setup(
         "refaclass",
         "refaclass.preprocess",
         "refaclass.core",
-        "refaclass.model",
         "refaclass.output",
     ],
     install_requires=_requirements(),

@@ -30,10 +30,6 @@ This library detects classes in your source code that may violate the "Single Re
   pip install -r requirements.dev.txt
   ```
 
-  manually download the binary file ( [cc.en.300.bin](リンク) ) of the model and place it under the following directory. you can also change to another model if necessary. in that case, change the file name to `cc.en.300.bin`.　
-
-  `refaclass/model/cc.en.300.bin`   
-
   run in local environment
   
   ```
