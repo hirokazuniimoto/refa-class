@@ -29,7 +29,7 @@ class SingleResponsibilityPrincipleDetector(AbstractDetector):
         )
 
         if self.__is_ignore_class(class_source.class_name):
-            return False
+            return False, optimal_n_clusters
 
         if optimal_n_clusters == 1:
             return False, optimal_n_clusters

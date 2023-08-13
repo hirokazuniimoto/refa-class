@@ -3,18 +3,17 @@
 
 # refa-class
 
-Simple overview of use/purpose.
+`Single Responsibility Principle` checker
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This library detects classes in your source code that may violate the "Single Responsibility Principle".
 
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* Python 3.8 or higher
 
 ### Installing
 * refa-class can be installed using pip:
@@ -43,21 +42,23 @@ An in-depth paragraph about your project and overview of use.
   python3 -m refaclass.main
 
   The following arguments are optional:
-  --dir            directory path
+  -d --dir            directory path
+  -o --output         output [terminal csv]
   ```
 
 ### Executing program
 
-you can check python `class` just like this:
-```
-cd [project]
-refaclass
+* you can check python `class` just like this:
+  ```
+  cd [project]
+  refaclass
 
-The following arguments are optional:
-  --dir            directory path
-```
+  The following arguments are optional:
+    -d --dir            directory path
+    -o --output         output [terminal csv]
+  ```
 
-### Test
+## Test
 
 * run test
 ```
@@ -69,7 +70,33 @@ python -m coverage run -m unittest discover tests
 python -m coverage report -m
 ```
 
-### Settings
+## Setting File
+This project utilizes configuration files `refaclass.ini` to customize its behavior and settings. Configuration files play a crucial role in tailoring the application to your specific needs. 
+
+* File Location: The configuration files are typically located in the config directory at the root of the project.
+
+### Configuration Sections
+* refaclass-[class name]
+* refaclass-[file name]
+
+you can also use regular expressions
+
+### Configuration Parameters
+* ignore_checks: if set to `True`,  ignore file or class specified in that section
+* is_file: if set to `True` then the content of the section is considered a file
+
+you can also use regular expressions
+
+### Example
+```
+[refaclass-test_.*.py]
+is_file = True
+ignore_checks = True
+
+[refaclass-Test.*]
+ignore_checks = True
+```
+
 
 
 ## Help

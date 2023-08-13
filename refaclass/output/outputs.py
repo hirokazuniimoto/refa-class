@@ -40,6 +40,7 @@ class TerminalOutput(AbstractOutput):
 
 
 class CsvOutput(AbstractOutput):
+    # TODO: detail csv output
     def output(self, results: Dict[str, bool]):
         data = pd.DataFrame(results.items(), columns=["class_name", "result"])
         data.to_csv("result.csv", index=False)

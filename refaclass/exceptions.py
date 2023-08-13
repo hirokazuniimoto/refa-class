@@ -25,3 +25,11 @@ class SourceCodeSyntaxError(Exception):
 
     def __str__(self):
         return f"Source code syntax error: {self.error}"
+
+
+class ClassNotFoundError(Exception):
+    def __init__(self, class_name: str):
+        self.class_name = class_name
+
+    def __str__(self):
+        return f"Class `{self.class_name}` is not found."

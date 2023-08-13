@@ -1,6 +1,7 @@
 import os
 from typing import Final
 
+from refaclass.base import SourceCodes
 from refaclass.exceptions import DirectoryNotFoundError
 from refaclass.settings import RefaclassSettings
 
@@ -80,7 +81,7 @@ class sourceCodeReader:
         else:
             return False
 
-    def get_source_codes(self) -> list:
+    def get_source_codes(self) -> SourceCodes:
         """
         get source codes from some files and return them as a list
 
@@ -96,4 +97,6 @@ class sourceCodeReader:
                 and not self.__is_source_code_empty(self.__get_source_code(file_path))
             ):
                 source_codes.append(self.__get_source_code(file_path))
-        return source_codes
+        return SourceCodes(
+            file_paths=self.__source_file_paths, source_codes=source_codes
+        )

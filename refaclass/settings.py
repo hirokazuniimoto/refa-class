@@ -3,14 +3,16 @@ import re
 
 
 class RefaclassSettings:
-    def __init__(self):
+    def __init__(self, config_path: str = "refaclass.ini"):
         self.config = configparser.ConfigParser()
-        self.config.read("refaclass.ini")
+        self.config.read(config_path)
 
         self.ignore_classes = []
         self.ignore_files = []
 
         for section in self.config.sections():
+            ignore_checks = False
+            is_file = False
             if "ignore_checks" in self.config[section]:
                 ignore_checks = self.config[section]["ignore_checks"]
             if "is_file" in self.config[section]:

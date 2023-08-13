@@ -12,6 +12,8 @@ class ParserStub(argparse.ArgumentParser):
         self.args = argparse.Namespace()
         if "dir" in kwargs:
             self.args = argparse.Namespace(dir=kwargs["dir"])
+        elif "output" in kwargs:
+            self.args = argparse.Namespace(output=kwargs["output"])
         else:
             self.args = argparse.Namespace(dir=None)
 
@@ -44,3 +46,7 @@ class TestArgumentHandler(unittest.TestCase):
                 parser=ParserStub(dir="tests/test_preprocess/not_exist_dir")
             )
             self.handler.dir
+
+    def test_output(self):
+        self.handler = ArgumentHandler(parser=ParserStub(output="terminal"))
+        self.assertEqual(self.handler.output, "terminal")
