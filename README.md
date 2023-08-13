@@ -31,7 +31,10 @@ This library detects classes in your source code that may violate the "Single Re
 * local environment  
   If you want to run the code locally, or change or modify it, you can install from the repo directly:
   ```
-  git clone https://github.com/hirokazuniimoto/refa-class.git    
+  git clone https://github.com/hirokazuniimoto/refa-class.git  
+  cd refa-class  
+  pip install -r requirements.txt
+  pip install -r requirements.dev.txt
   ```
   
   ```

@@ -2,7 +2,8 @@ import abc
 from typing import Dict
 
 import pandas as pd
-from colorama import Fore, Style
+
+from .color import ColorText
 
 
 class AbstractOutput(metaclass=abc.ABCMeta):
@@ -17,9 +18,7 @@ class TerminalOutput(AbstractOutput):
         for class_name, result in results.items():
             if result["result"] == "NG":
                 ng_count += 1
-                print(
-                    class_name + " : " + Fore.RED + result["result"] + Style.RESET_ALL
-                )
+                print(class_name + " : " + ColorText(result["result"]).coloring("red"))
                 # indent for easy to read
                 print("  details: ")
                 for label, sentences in result["violation_details"].items():
@@ -28,10 +27,8 @@ class TerminalOutput(AbstractOutput):
                         print("    - " + sentence[len(class_name) + 1 :])
             else:
                 print(
-                    class_name + " : " + Fore.GREEN + result["result"] + Style.RESET_ALL
+                    class_name + " : " + ColorText(result["result"]).coloring("green")
                 )
-
-        print(Style.RESET_ALL)
 
         print("-----------------------------")
         print("Total: " + str(len(results)))

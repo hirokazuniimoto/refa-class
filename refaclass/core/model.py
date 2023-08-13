@@ -10,7 +10,7 @@ class AbstractModel(abc.ABC):
 
 
 class FastTextModel(AbstractModel):
-    def __init__(self, model_path: str = "model/cc.en.300.bin"):
+    def __init__(self, model_path: str = "refaclass/model/cc.en.300.bin"):
         self.model = fasttext.load_model(model_path)
 
     def get_sentence_vector(self, sentence: str) -> list:

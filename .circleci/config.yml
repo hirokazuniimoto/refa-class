@@ -20,6 +20,9 @@ jobs:
           name: install requirements
           command: sudo pip install -r requirements.txt
       - run:
+          name: install requirements.dev
+          command: sudo pip install -r requirements.dev.txt
+      - run:
           name: lint with black
           command: black . --check
       - run:
