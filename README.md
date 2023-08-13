@@ -82,9 +82,7 @@ you can also use regular expressions
 
 ### Configuration Parameters
 * ignore_checks: if set to `True`,  ignore file or class specified in that section
-* is_file: if set to `True` then the content of the section is considered a file
-
-you can also use regular expressions
+* is_file: if set to `True` then the content of the section is considered a file (if set to `False` or no `is_file` parameters then class)
 
 ### Example
 ```
@@ -96,27 +94,11 @@ ignore_checks = True
 ignore_checks = True
 ```
 
-
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
 ## Authors
-
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+[Hirokazu Niimoto](https://github.com/hirokazuniimoto)
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
@@ -124,15 +106,7 @@ ex. [@DomPizzie](https://twitter.com/dompizzie)
 
 This project is licensed under the MIT License - see the LICENSE file for details
 
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
-
 ## Reference paper
-
+* [ソフトウェア設計のSOLID原則に基づく単一責任の原則違反を検出するための自然言語処理ツールの提案と評価（仮）]()
+* [自然言語処理を用いたデータベーススキーマの 再構成支援ツールの開発](https://www.jstage.jst.go.jp/article/jssst/39/2/39_2_29/_pdf/-char/ja)
 
