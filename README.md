@@ -42,9 +42,7 @@ This library detects classes in your source code that may violate the "Single Re
   -o --output         output [terminal csv]
   ```
 
-  you can use remote containers extension to create container
-  - install and setup remote-containers extension in vscode
-  https://code.visualstudio.com/docs/remote/containers
+  you can use [Visual Studio Code Dev Containers extension](https://code.visualstudio.com/docs/remote/containers) to create container
 
 ### Executing program
 
