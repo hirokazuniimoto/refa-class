@@ -1,5 +1,7 @@
 import argparse
+import os
 import warnings
+from typing import Final
 
 from .core.clustering import KMeansClusteringMethod
 from .core.detection import SingleResponsibilityPrincipleDetector
@@ -11,6 +13,10 @@ from .preprocess.source_code_reader import sourceCodeReader
 from .settings import RefaclassSettings
 
 warnings.simplefilter("ignore", FutureWarning)
+
+
+# ライブラリがインストールされているディレクトリを取得
+LIBRARY_DIR: Final = os.path.dirname(os.path.abspath(__file__))
 
 
 def main(
@@ -26,7 +32,9 @@ def main(
         source_codes=source_codes,
         detector=SingleResponsibilityPrincipleDetector(
             refaclass_settings=RefaclassSettings(),
-            clustering_method=KMeansClusteringMethod(model=FastTextModel()),
+            clustering_method=KMeansClusteringMethod(
+                model=FastTextModel(lib_dir=LIBRARY_DIR)
+            ),
         ),
     )
 
