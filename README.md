@@ -11,10 +11,6 @@ This library detects classes in your source code that may violate the "Single Re
 
 ## Getting Started
 
-### Dependencies
-
-* Python 3.8 or higher
-
 ### Installing
 * refa-class can be installed using pip:
     ```

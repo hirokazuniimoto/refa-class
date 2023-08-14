@@ -18,7 +18,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="refaclass",
-    version="1.4.1",
+    version="1.4.2",
     author="Hirokazu Niimoto",
     description="A Python package for RefaClass",
     long_description=long_description,
@@ -33,5 +33,9 @@ setup(
     entry_points={"console_scripts": ["refaclass = refaclass.main:main"]},
     url="https://github.com/hirokazuniimoto/refa-class",
     license="MIT",
-    python_requires=">=3.8",
+    classifiers=[
+        "Programming Language :: Python",
+        "Programming Language :: Python :: 3.8",
+        "License :: OSI Approved :: MIT License",
+    ],
 )
