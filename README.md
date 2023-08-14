@@ -91,7 +91,7 @@ ignore_checks = True
 ignore_checks = True
 ```
 
-## Authors
+## Author
 [Hirokazu Niimoto](https://github.com/hirokazuniimoto)
 
 ## Version History
@@ -105,5 +105,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Reference paper
 * [ソフトウェア設計のSOLID原則に基づく単一責任の原則違反を検出するための自然言語処理ツールの提案と評価（仮）]()
-* [自然言語処理を用いたデータベーススキーマの 再構成支援ツールの開発](https://www.jstage.jst.go.jp/article/jssst/39/2/39_2_29/_pdf/-char/ja)
+* [自然言語処理を用いたデータベーススキーマの再構成支援ツールの開発](https://www.jstage.jst.go.jp/article/jssst/39/2/39_2_29/_pdf/-char/ja)
 
