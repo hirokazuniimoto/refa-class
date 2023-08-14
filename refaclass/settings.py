@@ -19,9 +19,9 @@ class RefaclassSettings:
                 is_file = self.config[section]["is_file"]
 
             if ignore_checks and is_file:
-                self.ignore_files.append(section.lstrip("refaclass-"))
+                self.ignore_files.append(section.replace("refaclass-", "", 1))
             elif ignore_checks and not is_file:
-                self.ignore_classes.append(section.lstrip("refaclass-"))
+                self.ignore_classes.append(section.replace("refaclass-", "", 1))
 
     def is_ignore_file(self, file_name):
         """

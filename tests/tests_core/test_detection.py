@@ -40,7 +40,7 @@ class TestKMeansSingleResponsibilityPrincipleDetector(unittest.TestCase):
         is_violation, n_clusters = self.detector.detect_violation(
             class_source=class_source
         )
-        self.assertEqual(is_violation, False)
+        self.assertEqual(is_violation, None)
         self.assertEqual(n_clusters, 2)
 
     def test_no_violation(self):

@@ -20,6 +20,8 @@ class RefaclassExecutor:
                 is_detect_violation, optimal_n_clusters = detector.detect_violation(
                     class_source=class_source
                 )
+                if is_detect_violation is None:
+                    continue
                 if is_detect_violation:
                     detect_violation_results[class_name] = {
                         "result": "NG",

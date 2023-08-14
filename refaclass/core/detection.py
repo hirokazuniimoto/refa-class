@@ -17,19 +17,14 @@ class SingleResponsibilityPrincipleDetector(AbstractDetector):
         self.refaclass_settings = refaclass_settings
         self.clustering_method = clustering_method
 
-    def __is_ignore_class(self, class_name: str) -> bool:
-        if self.refaclass_settings.is_ignore_class(class_name):
-            return True
-        return False
-
     def detect_violation(self, class_source: classSource):
         class_source_sentences = class_source.convert_to_sentences()
         optimal_n_clusters = self.clustering_method.estimate_n_clusters(
             sentences=class_source_sentences
         )
 
-        if self.__is_ignore_class(class_source.class_name):
-            return False, optimal_n_clusters
+        if self.refaclass_settings.is_ignore_class(class_source.class_name):
+            return None, optimal_n_clusters
 
         if optimal_n_clusters == 1:
             return False, optimal_n_clusters
