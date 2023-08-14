@@ -11,6 +11,9 @@ This library detects classes in your source code that may violate the "Single Re
 
 ## Getting Started
 
+### Notice
+* The first run will take some time as the model needs to be loaded.
+
 ### Installing
 * refa-class can be installed using pip:
     ```
