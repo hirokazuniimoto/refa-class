@@ -10,3 +10,4 @@ scipy==1.10.1
 six==1.16.0
 threadpoolctl==3.2.0
 tzdata==2023.3
+tqdm==4.66.1
