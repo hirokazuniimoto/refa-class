@@ -12,7 +12,7 @@ This library detects classes in your source code that may violate the "Single Re
 ## Getting Started
 
 ### Notice
-* The first run will take some time as the model needs to be loaded.
+* The first run will take some time as the model needs to be downloaded.
 
 ### Installing
 * refa-class can be installed using pip:
@@ -69,7 +69,7 @@ python -m coverage report -m
 ## Setting File
 This project utilizes configuration files `refaclass.ini` to customize its behavior and settings. Configuration files play a crucial role in tailoring the application to your specific needs. 
 
-* File Location: The configuration files are typically located in the config directory at the root of the project.
+* File Location: The configuration files arelocated at the root of the project.
 
 ### Configuration Sections
 * refaclass-[class name]
