@@ -37,6 +37,7 @@ This library detects classes in your source code that may violate the "Single Re
   The following arguments are optional:
   -d --dir            directory path
   -o --output         output [terminal csv]
+  -t --threshold      cosine similarity threshold between methods (detects methods below threshold)
   ```
 
   you can use [Visual Studio Code Dev Containers extension](https://code.visualstudio.com/docs/remote/containers) to create container
@@ -52,7 +53,14 @@ This library detects classes in your source code that may violate the "Single Re
   The following arguments are optional:
     -d --dir            directory path
     -o --output         output [terminal csv]
+    -t --threshold      cosine similarity threshold between methods (detects methods below threshold)
   ```
+
+### Result
+
+* `OK` Classes that are not considered to violate the Single Responsibility Principle
+* `NG` Classes considered to violate the Single Responsibility Principle
+  * Show detected methods
 
 ## Test
 
@@ -96,8 +104,12 @@ ignore_checks = True
 
 ## Version History
 
-* 0.1
-    * Initial Release
+* 1.5.1
+    * [GitHub](https://github.com/hirokazuniimoto/refa-class/releases/tag/1.5.1)
+    * [PyPI](https://pypi.org/project/refaclass/1.5.1/)
+* 2.0.1
+    * [GitHub]()
+    * [PyPI]()
 
 ## License
 

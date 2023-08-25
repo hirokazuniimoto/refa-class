@@ -5,7 +5,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     make \
     wget \
-    build-essential
+    build-essential \
+    git \
 
 COPY requirements.txt requirements.txt
 RUN pip3 install -r requirements.txt

@@ -56,6 +56,13 @@ class sourceCodeReader:
         else:
             return False
 
+    def __is_ignore_dir(self, file_path: str) -> bool:
+        dirs = file_path.split("/")
+        for dir in dirs:
+            if self.__refaclass_settings.is_ignore_dir(dir):
+                return True
+        return False
+
     def __is_ignore_file(self, file_path: str) -> bool:
         file_name = file_path.split("/")[-1]
         return self.__refaclass_settings.is_ignore_file(file_name)
@@ -71,8 +78,13 @@ class sourceCodeReader:
             str: source code
         """
 
-        with open(file_path, "r", encoding="utf-8") as file:
-            source_code = file.read()
+        try:
+            with open(file_path, "r", encoding="utf-8") as file:
+                source_code = file.read()
+        except UnicodeDecodeError:
+            source_code = ""
+        except OSError:
+            source_code = ""
         return source_code
 
     def __is_source_code_empty(self, source_code: str) -> bool:
@@ -93,6 +105,7 @@ class sourceCodeReader:
         for file_path in self.__source_file_paths:
             if (
                 self.__is_python_file(file_path)
+                and not self.__is_ignore_dir(file_path)
                 and not self.__is_ignore_file(file_path)
                 and not self.__is_source_code_empty(self.__get_source_code(file_path))
             ):

@@ -14,26 +14,23 @@ class RefaclassExecutor:
             for class_name, method_names in class_and_method_names.items():
                 if not class_name:
                     continue
+
                 class_source = classSource(
                     class_name=class_name, method_names=method_names
                 )
-                is_detect_violation, optimal_n_clusters = detector.detect_violation(
+
+                detect_outliers_methods = detector.detect_violation_methods(
                     class_source=class_source
                 )
-                if is_detect_violation is None:
-                    continue
-                if is_detect_violation:
+                if len(detect_outliers_methods) > 0:
                     detect_violation_results[class_name] = {
                         "result": "NG",
-                        "method_names": method_names,
-                        "violation_details": detector.violation_details(
-                            class_source=class_source, n_clusters=optimal_n_clusters
-                        ),
+                        "outliers_methods": detect_outliers_methods,
                     }
-                else:
+                elif len(detect_outliers_methods) == 0:
                     detect_violation_results[class_name] = {
                         "result": "OK",
-                        "method_names": method_names,
+                        "outliers_methods": detect_outliers_methods,
                     }
 
         return DetectViolationResults(results=detect_violation_results)

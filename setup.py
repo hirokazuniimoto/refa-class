@@ -18,7 +18,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="refaclass",
-    version="1.5.1",
+    version="2.0.1",
     author="Hirokazu Niimoto",
     description="A Python package for RefaClass",
     long_description=long_description,

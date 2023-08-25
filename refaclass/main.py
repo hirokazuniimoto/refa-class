@@ -3,7 +3,8 @@ import os
 import warnings
 from typing import Final
 
-from .core.clustering import KMeansClusteringMethod
+from refaclass.core.outliers import CosineSimilarityOutliersDetectionMethod
+
 from .core.detection import SingleResponsibilityPrincipleDetector
 from .core.executor import RefaclassExecutor
 from .core.model import FastTextModel
@@ -32,8 +33,9 @@ def main(
         source_codes=source_codes,
         detector=SingleResponsibilityPrincipleDetector(
             refaclass_settings=RefaclassSettings(),
-            clustering_method=KMeansClusteringMethod(
-                model=FastTextModel(lib_dir=LIBRARY_DIR)
+            outliers_detection_methods=CosineSimilarityOutliersDetectionMethod(
+                model=FastTextModel(lib_dir=LIBRARY_DIR),
+                threshold=float(args.threshold) if args.threshold is not None else 0.5,
             ),
         ),
     )

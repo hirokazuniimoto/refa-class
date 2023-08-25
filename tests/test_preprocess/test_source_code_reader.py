@@ -16,7 +16,6 @@ class TestSourceCodeReader(unittest.TestCase):
 
         self.reader = sourceCodeReader(dir=source_code_dir_path)
         source_codes = self.reader.get_source_codes()
-
         self.assertEqual(source_codes.source_codes[0], self.source_code)
 
     def test_not_exist_dir(self):

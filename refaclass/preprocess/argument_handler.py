@@ -13,6 +13,9 @@ class ArgumentHandler:
         self.parser.add_argument(
             "-o", "--output", help="output type", choices=["terminal", "csv"]
         )
+        self.parser.add_argument(
+            "-t", "--threshold", help="threshold for outliers detection"
+        )
         self.args = self.parser.parse_args()
 
     def __exits_dir(self, dir: str) -> bool:
@@ -36,3 +39,7 @@ class ArgumentHandler:
     @property
     def output(self) -> str:
         return self.args.output
+
+    @property
+    def threshold(self) -> float:
+        return self.args.threshold

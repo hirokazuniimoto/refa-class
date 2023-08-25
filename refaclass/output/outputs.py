@@ -20,11 +20,9 @@ class TerminalOutput(AbstractOutput):
                 ng_count += 1
                 print(class_name + " : " + ColorText(result["result"]).coloring("red"))
                 # indent for easy to read
-                print("  details: ")
-                for label, sentences in result["violation_details"].items():
-                    print("    group: " + str(label))
-                    for sentence in sentences:
-                        print("    - " + sentence[len(class_name) + 1 :])
+                print("  methods: ")
+                for outliers_method in result["outliers_methods"]:
+                    print("    - " + outliers_method)
             else:
                 print(
                     class_name + " : " + ColorText(result["result"]).coloring("green")

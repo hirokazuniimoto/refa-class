@@ -1,15 +1,26 @@
 import unittest
 
 from refaclass.base import classSource
-from refaclass.core.clustering import KMeansClusteringMethod
 from refaclass.core.detection import SingleResponsibilityPrincipleDetector
 from refaclass.core.model import AbstractModel
+from refaclass.core.outliers import CosineSimilarityOutliersDetectionMethod
 from refaclass.settings import RefaclassSettings
 
 
 class ModelStubSameVec(AbstractModel):
     def get_sentence_vector(self, sentence: str) -> list:
         return [0.0, 0.0, 0.0]
+
+    def get_cosine_similarity(self, sentence1: str, sentence2: str) -> float:
+        return 0.6
+
+
+class ModelStubDifferentVec(AbstractModel):
+    def get_sentence_vector(self, sentence: str) -> list:
+        return [0.0, 0.0, 0.0]
+
+    def get_cosine_similarity(self, sentence1: str, sentence2: str) -> float:
+        return 0.4
 
 
 class TestKMeansSingleResponsibilityPrincipleDetector(unittest.TestCase):
@@ -18,51 +29,36 @@ class TestKMeansSingleResponsibilityPrincipleDetector(unittest.TestCase):
             refaclass_settings=RefaclassSettings(
                 config_path="tests/refaclass_ini_for_test.ini"
             ),
-            clustering_method=KMeansClusteringMethod(model=ModelStubSameVec()),
+            outliers_detection_methods=CosineSimilarityOutliersDetectionMethod(
+                model=ModelStubDifferentVec(), threshold=0.5
+            ),
         )
 
     def test_detect_violation(self):
         class_source = classSource(
             class_name="SampleClass",
-            method_names=["method", "aaa", "bbb"],
+            method_names=["youtube", "door"],
         )
-        is_violation, n_clusters = self.detector.detect_violation(
+        detect_outliers_methods = self.detector.detect_violation_methods(
             class_source=class_source
         )
-        self.assertEqual(is_violation, True)
-        self.assertEqual(n_clusters, 2)
-
-    def test_detect_violation_with_ignore_class(self):
-        class_source = classSource(
-            class_name="TestClass",
-            method_names=["method", "aaa", "bbb"],
-        )
-        is_violation, n_clusters = self.detector.detect_violation(
-            class_source=class_source
-        )
-        self.assertEqual(is_violation, None)
-        self.assertEqual(n_clusters, 2)
+        self.assertEqual(detect_outliers_methods, ["youtube", "door"])
 
     def test_no_violation(self):
+        self.detector = SingleResponsibilityPrincipleDetector(
+            refaclass_settings=RefaclassSettings(
+                config_path="tests/refaclass_ini_for_test.ini"
+            ),
+            outliers_detection_methods=CosineSimilarityOutliersDetectionMethod(
+                model=ModelStubSameVec(), threshold=0.5
+            ),
+        )
+
         class_source = classSource(
             class_name="SampleClass",
             method_names=["method"],
         )
-        is_violation, n_clusters = self.detector.detect_violation(
+        detect_outliers_methods = self.detector.detect_violation_methods(
             class_source=class_source
         )
-        self.assertEqual(is_violation, False)
-        self.assertEqual(n_clusters, 1)
-
-    def test_violation_details(self):
-        class_source = classSource(
-            class_name="SampleClass",
-            method_names=["method", "aaa", "bbb"],
-        )
-        n_clusters = 1
-        violation_details = self.detector.violation_details(
-            class_source=class_source,
-            n_clusters=n_clusters,
-        )
-        self.assertEqual(len(violation_details), 1)
-        self.assertEqual(len(violation_details[0]), 3)
+        self.assertEqual(detect_outliers_methods, [])

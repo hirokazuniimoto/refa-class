@@ -7,14 +7,8 @@ from refaclass.exceptions import ClassNotFoundError
 
 
 class DetectorStub(AbstractDetector):
-    def detect_violation(self, class_source) -> bool:
-        return True, 2
-
-    def violation_details(self, class_source, n_clusters) -> dict:
-        return {
-            "cluster1": ["method1", "method2"],
-            "cluster2": ["method3", "method4"],
-        }
+    def detect_violation_methods(self, class_source):
+        return ["method1", "method2"]
 
 
 class TestRefaclassExecutor(unittest.TestCase):

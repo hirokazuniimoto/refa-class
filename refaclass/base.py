@@ -18,11 +18,10 @@ class classSource:
     def method_names(self) -> List[str]:
         return self._method_names
 
-    def convert_to_sentences(self) -> List[str]:
-        sentences = [
+    def convert_to_class_and_mathods(self) -> List[str]:
+        return [
             self.class_name + " " + method_name for method_name in self.method_names
         ]
-        return sentences
 
 
 class DetectViolationResults:
