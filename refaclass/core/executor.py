@@ -22,6 +22,10 @@ class RefaclassExecutor:
                 detect_outliers_methods = detector.detect_violation_methods(
                     class_source=class_source
                 )
+
+                if detect_outliers_methods is None:
+                    continue
+
                 if len(detect_outliers_methods) > 0:
                     detect_violation_results[class_name] = {
                         "result": "NG",

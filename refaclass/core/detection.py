@@ -22,6 +22,9 @@ class SingleResponsibilityPrincipleDetector(AbstractDetector):
         self.outliers_detection_methods = outliers_detection_methods
 
     def detect_violation_methods(self, class_source: classSource):
+        if self.refaclass_settings.is_ignore_class(class_source.class_name):
+            return None
+
         methods = class_source.method_names
 
         outliers_methods = self.outliers_detection_methods.find_outliers(
