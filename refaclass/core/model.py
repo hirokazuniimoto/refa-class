@@ -2,7 +2,7 @@ import abc
 import gzip
 import os
 
-import requests
+import gdown
 from gensim.models.fasttext import load_facebook_model
 from tqdm import tqdm
 
@@ -34,23 +34,7 @@ class FastTextModel(AbstractModel):
         # fasttext.util.download_model("en", if_exists="ignore")  cant designate lib_dir so use below
         # NOTE: This is a model trained by class and wiki corpus (google drive link)
         url = "https://drive.google.com/uc?id=1SJFJgxa-KOZbn0xFteZ-XnqzLmGNYEjE"
-        response = requests.get(url, stream=True, timeout=10)
-        total_size = int(response.headers.get("Content-Length", 0))
-
-        os.makedirs(self.lib_dir + "/model", exist_ok=True)
-
-        if os.path.exists(self.download_path):
-            return
-
-        with open(self.download_path, "wb") as f:
-            with tqdm(
-                total=total_size, unit="B", unit_scale=True, unit_divisor=1024
-            ) as pbar:
-                for chunk in response.iter_content(
-                    chunk_size=8192
-                ):  # Adjust chunk size if needed
-                    f.write(chunk)
-                    pbar.update(len(chunk))
+        gdown.download(url, self.download_path, quiet=False)
 
     def __unzip_model(self):
         chunk_size = 8192  # Adjust chunk size as needed
