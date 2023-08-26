@@ -1,4 +1,5 @@
 import abc
+import statistics
 
 from refaclass.core.model import AbstractModel
 
@@ -31,7 +32,7 @@ class CosineSimilarityOutliersDetectionMethod(AbstractOutliersDetectionMethod):
                 )
             if (
                 len(base_method_cosine_similarities) > 0
-                and max(base_method_cosine_similarities) < self.threshold
+                and statistics.mean(base_method_cosine_similarities) < self.threshold
             ):
                 low_cosine_similarities_methods.append(base_method)
 
