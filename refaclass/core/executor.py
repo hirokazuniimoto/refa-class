@@ -15,6 +15,9 @@ class RefaclassExecutor:
                 if not class_name:
                     continue
 
+                if len(method_names) == 0:
+                    continue
+
                 class_source = classSource(
                     class_name=class_name, method_names=method_names
                 )

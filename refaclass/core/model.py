@@ -3,6 +3,7 @@ import gzip
 import os
 
 import gdown
+import numpy as np
 from gensim.models.fasttext import load_facebook_model
 from tqdm import tqdm
 
@@ -63,7 +64,16 @@ class FastTextModel(AbstractModel):
             pbar.close()
 
     def get_sentence_vector(self, sentence: str) -> list:
-        return self.__model.wv.get_sentence_vector(sentence)
+        words = sentence.split(
+            " "
+        )  # split sentence into word list. ex) hello world -> ['hello', 'world']
+        return self.__model.wv.get_sentence_vector(words)
 
-    def get_cosine_similarity(self, sentence1: str, sentence2: str) -> float:
+    def get_similarity(self, sentence1: str, sentence2: str) -> float:
         return self.__model.wv.similarity(sentence1, sentence2)
+
+    def get_cosine_similarity(self, vector1: list, vector2: list) -> float:
+        return self.__model.wv.cosine_similarities(vector1, vector2)
+
+    def vector_distance(self, vec1, vec2):
+        return np.linalg.norm(vec1 - vec2)

@@ -7,7 +7,7 @@
 
 ## Description
 
-This library detects classes in your source code that may violate the "Single Responsibility Principle".
+This library detects classes in your source code that may violate the "Single Responsibility Principle". If the method does not exist in the class it will be ignored.
 
 ## Getting Started
 
@@ -37,7 +37,7 @@ This library detects classes in your source code that may violate the "Single Re
   The following arguments are optional:
   -d --dir            directory path
   -o --output         output [terminal csv]
-  -t --threshold      cosine similarity threshold between methods (detects methods below threshold)
+  -t --threshold      cosine similarity threshold between [method and method] [class and method] (detects below threshold) default: 0.5
   ```
 
   you can use [Visual Studio Code Dev Containers extension](https://code.visualstudio.com/docs/remote/containers) to create container
@@ -53,7 +53,7 @@ This library detects classes in your source code that may violate the "Single Re
   The following arguments are optional:
     -d --dir            directory path
     -o --output         output [terminal csv]
-    -t --threshold      cosine similarity threshold between methods (detects methods below threshold)
+    -t --threshold      cosine similarity threshold between [method and method] [class and method] (detects below threshold) default: 0.5
   ```
 
 ### Result

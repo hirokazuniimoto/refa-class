@@ -1,4 +1,5 @@
 import unittest
+import unittest.mock
 
 from refaclass.base import classSource
 from refaclass.core.detection import SingleResponsibilityPrincipleDetector
@@ -23,6 +24,10 @@ class ModelStubDifferentVec(AbstractModel):
         return 0.4
 
 
+def mock_cos_sim(v1, v2):
+    return 0.4
+
+
 class TestKMeansSingleResponsibilityPrincipleDetector(unittest.TestCase):
     def setUp(self):
         self.detector = SingleResponsibilityPrincipleDetector(
@@ -34,15 +39,21 @@ class TestKMeansSingleResponsibilityPrincipleDetector(unittest.TestCase):
             ),
         )
 
-    def test_detect_violation(self):
+    @unittest.mock.patch(
+        "refaclass.core.outliers.CosineSimilarityOutliersDetectionMethod._CosineSimilarityOutliersDetectionMethod__cos_sim",
+        side_effect=mock_cos_sim,
+    )
+    def test_detect_violation(self, mock_cos_sim):
         class_source = classSource(
-            class_name="SampleClass",
+            class_name="hello",
             method_names=["youtube", "door"],
         )
         detect_outliers_methods = self.detector.detect_violation_methods(
             class_source=class_source
         )
         self.assertEqual(detect_outliers_methods, ["youtube", "door"])
+
+        self.assertEqual(mock_cos_sim.call_count, 4)
 
     def test_no_violation(self):
         self.detector = SingleResponsibilityPrincipleDetector(

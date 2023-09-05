@@ -28,7 +28,7 @@ class SingleResponsibilityPrincipleDetector(AbstractDetector):
         methods = class_source.method_names
 
         outliers_methods = self.outliers_detection_methods.find_outliers(
-            methods=methods
+            class_name=class_source.class_name, methods=methods
         )
 
         return outliers_methods
