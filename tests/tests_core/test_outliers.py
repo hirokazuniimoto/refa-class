@@ -25,6 +25,10 @@ def mock_cos_sim(v1, v2):
     return 0.4
 
 
+def mock_cos_sim_high(v1, v2):
+    return 0.6
+
+
 class TestCosineSimilarityOutliersDetectionMethod(unittest.TestCase):
     def setUp(self):
         self.outliers_detection_methods = CosineSimilarityOutliersDetectionMethod(
@@ -44,7 +48,11 @@ class TestCosineSimilarityOutliersDetectionMethod(unittest.TestCase):
 
         self.assertEqual(mock_cos_sim.call_count, 9)
 
-    def test_find_outliers_with_one_method(self):
+    @unittest.mock.patch(
+        "refaclass.core.outliers.CosineSimilarityOutliersDetectionMethod._CosineSimilarityOutliersDetectionMethod__cos_sim",
+        side_effect=mock_cos_sim_high,
+    )
+    def test_find_outliers_with_one_method(self, mock_cos_sim_high):
         self.outliers_detection_methods = CosineSimilarityOutliersDetectionMethod(
             model=ModelStubSameVec(), threshold=0.5
         )

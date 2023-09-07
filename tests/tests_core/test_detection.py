@@ -28,6 +28,10 @@ def mock_cos_sim(v1, v2):
     return 0.4
 
 
+def mock_cos_sim_high(v1, v2):
+    return 0.6
+
+
 class TestKMeansSingleResponsibilityPrincipleDetector(unittest.TestCase):
     def setUp(self):
         self.detector = SingleResponsibilityPrincipleDetector(
@@ -55,7 +59,11 @@ class TestKMeansSingleResponsibilityPrincipleDetector(unittest.TestCase):
 
         self.assertEqual(mock_cos_sim.call_count, 4)
 
-    def test_no_violation(self):
+    @unittest.mock.patch(
+        "refaclass.core.outliers.CosineSimilarityOutliersDetectionMethod._CosineSimilarityOutliersDetectionMethod__cos_sim",
+        side_effect=mock_cos_sim_high,
+    )
+    def test_no_violation(self, mock_cos_sim_high):
         self.detector = SingleResponsibilityPrincipleDetector(
             refaclass_settings=RefaclassSettings(
                 config_path="tests/refaclass_ini_for_test.ini"
