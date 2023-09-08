@@ -45,34 +45,27 @@ class CosineSimilarityOutliersDetectionMethod(AbstractOutliersDetectionMethod):
 
         low_cosine_similarities_methods = []
 
-        if (
-            len(methods) > 1
-        ):  # if there are more than one method, it compares with other methods and only outliers are compared with class name
-            for i, base_method in enumerate(methods):
-                base_method_cosine_similarities = []
-                for j, compare_method in enumerate(methods):
-                    if i == j:
-                        continue
-                    base_method_cosine_similarities.append(
-                        self.__cos_sim(
-                            self.model.get_sentence_vector(
-                                base_method.replace("_", " ")
-                            ),
-                            self.model.get_sentence_vector(
-                                compare_method.replace("_", " ")
-                            ),
-                        )
+        for i, base_method in enumerate(methods):
+            base_method_cosine_similarities = []
+            for j, compare_method in enumerate(methods):
+                if i == j:
+                    continue
+                base_method_cosine_similarities.append(
+                    self.__cos_sim(
+                        self.model.get_sentence_vector(base_method.replace("_", " ")),
+                        self.model.get_sentence_vector(
+                            compare_method.replace("_", " ")
+                        ),
                     )
+                )
 
-                if (
-                    len(base_method_cosine_similarities) > 0
-                    and max(base_method_cosine_similarities) < self.threshold
-                ):
-                    low_cosine_similarities_methods.append(base_method)
-        # if there is only one method, it always compares with class name
-        elif len(methods) == 1:
-            low_cosine_similarities_methods = methods
+            if (
+                len(base_method_cosine_similarities) > 0
+                and max(base_method_cosine_similarities) < self.threshold
+            ):
+                low_cosine_similarities_methods.append(base_method)
 
+        # compare with class name
         class_name_cosine_similarities = {}
         for i, base_method in enumerate(methods):
             class_name_cosine_similarities[base_method] = self.__cos_sim(

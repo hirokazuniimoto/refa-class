@@ -1,5 +1,12 @@
 [![<ORG_NAME>](https://circleci.com/gh/hirokazuniimoto/refa-class.svg?style=svg)](https://app.circleci.com/pipelines/github/hirokazuniimoto/refa-class)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/refaclass)
+![PyPI - Version](https://img.shields.io/pypi/v/refaclass)
+![PyPI - Format](https://img.shields.io/pypi/format/refaclass)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/hirokazuniimoto/refa-class/main)
+![GitHub commit activity (branch)](https://img.shields.io/github/commit-activity/t/hirokazuniimoto/refa-class)
+![PyPI - License](https://img.shields.io/pypi/l/refaclass)
+
+
 
 # refa-class
 
