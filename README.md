@@ -89,12 +89,14 @@ This project utilizes configuration files `refaclass.ini` to customize its behav
 ### Configuration Sections
 * refaclass-[class name]
 * refaclass-[file name]
+* refaclass-[directory name]
 
 you can also use regular expressions
 
 ### Configuration Parameters
 * ignore_checks: if set to `True`,  ignore file or class specified in that section
 * is_file: if set to `True` then the content of the section is considered a file (if set to `False` or no `is_file` parameters then class)
+* is_dir: if set to `True` then the content of the section is considered a directory (if set to `False` or no `is_file` parameters then class)
 
 ### Example
 ```
@@ -103,6 +105,10 @@ is_file = True
 ignore_checks = True
 
 [refaclass-Test.*]
+ignore_checks = True
+
+[refaclass-tests/test_core.*]
+is_dir = True
 ignore_checks = True
 ```
 
@@ -122,7 +128,12 @@ ignore_checks = True
 
 This project is licensed under the MIT License - see the LICENSE file for details
 
-## Reference paper
+## Paper
 * [ソフトウェア設計のSOLID原則に基づく単一責任の原則違反を検出するための自然言語処理ツールの提案と評価（仮）]()
+
+## Reference paper
+* [Design Principles and Design Patterns](https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf)
+* [機械学習を用いたメソッド抽出リファクタリングの推薦手法](https://sel.ist.osaka-u.ac.jp/lab-db/betuzuri/archive/956/956.pdf)
 * [自然言語処理を用いたデータベーススキーマの再構成支援ツールの開発](https://www.jstage.jst.go.jp/article/jssst/39/2/39_2_29/_pdf/-char/ja)
+
 
