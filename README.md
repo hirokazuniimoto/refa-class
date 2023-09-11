@@ -14,7 +14,7 @@
 
 ## Description
 
-This library detects classes in your source code that may violate the "Single Responsibility Principle". If the method does not exist in the class it will be ignored.
+This library detects classes in your source code that may violate the Single Responsibility Principle. If a method does not exist in a class, that class is ignored.
 
 ## Getting Started
 
