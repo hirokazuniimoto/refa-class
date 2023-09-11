@@ -128,8 +128,8 @@ ignore_checks = True
 
 This project is licensed under the MIT License - see the LICENSE file for details
 
-## Paper(not published yet)
-* [オブジェクト指向ソフトウェア設計における単一責任の原則違反の検出手法の提案]()
+<!-- ## Paper(not published yet)
+* [オブジェクト指向ソフトウェア設計における単一責任の原則違反の検出手法の提案]() -->
 
 ## Reference paper
 * [Design Principles and Design Patterns](https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf)
