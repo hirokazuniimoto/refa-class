@@ -120,9 +120,9 @@ ignore_checks = True
 * 1.5.1
     * [GitHub](https://github.com/hirokazuniimoto/refa-class/releases/tag/1.5.1)
     * [PyPI](https://pypi.org/project/refaclass/1.5.1/)
-* 2.2.1
-    * [GitHub](https://github.com/hirokazuniimoto/refa-class/releases/tag/2.1.0)
-    * [PyPI](https://pypi.org/project/refaclass/2.2.1/)
+* 2.2.0
+    * [GitHub](https://github.com/hirokazuniimoto/refa-class/releases/tag/2.2.0)
+    * [PyPI](https://pypi.org/project/refaclass/2.3.0/)
 
 ## License
 
