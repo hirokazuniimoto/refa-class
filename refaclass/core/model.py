@@ -3,7 +3,6 @@ import gzip
 import os
 
 import gdown
-import numpy as np
 from gensim.models.fasttext import load_facebook_model
 from tqdm import tqdm
 
@@ -71,9 +70,3 @@ class FastTextModel(AbstractModel):
 
     def get_similarity(self, sentence1: str, sentence2: str) -> float:
         return self.__model.wv.similarity(sentence1, sentence2)
-
-    def get_cosine_similarity(self, vector1: list, vector2: list) -> float:
-        return self.__model.wv.cosine_similarities(vector1, vector2)
-
-    def vector_distance(self, vec1, vec2):
-        return np.linalg.norm(vec1 - vec2)

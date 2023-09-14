@@ -22,7 +22,7 @@ class TerminalOutput(AbstractOutput):
                 # indent for easy to read
                 print("  methods: ")
                 for outliers_method in result["outliers_methods"]:
-                    print("    - " + outliers_method)
+                    print("    - " + outliers_method.method_name)
             else:
                 print(
                     class_name + " : " + ColorText(result["result"]).coloring("green")

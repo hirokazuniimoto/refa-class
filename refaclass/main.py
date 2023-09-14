@@ -8,6 +8,7 @@ from refaclass.core.outliers import CosineSimilarityOutliersDetectionMethod
 from .core.detection import SingleResponsibilityPrincipleDetector
 from .core.executor import RefaclassExecutor
 from .core.model import FastTextModel
+from .core.relation import VectorRelation
 from .output.outputs import CsvOutput, TerminalOutput
 from .preprocess.argument_handler import ArgumentHandler
 from .preprocess.source_code_reader import sourceCodeReader
@@ -35,6 +36,7 @@ def main(
             refaclass_settings=RefaclassSettings(),
             outliers_detection_methods=CosineSimilarityOutliersDetectionMethod(
                 model=FastTextModel(lib_dir=LIBRARY_DIR),
+                relation=VectorRelation(),
                 threshold=float(args.threshold) if args.threshold is not None else 0.5,
             ),
         ),

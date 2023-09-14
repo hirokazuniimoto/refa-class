@@ -1,5 +1,6 @@
 import ast
 
+from refaclass.base import MethodName
 from refaclass.exceptions import InvalidSourceCodeError, SourceCodeSyntaxError
 
 
@@ -19,7 +20,7 @@ class ClassNameVisitor(ast.NodeVisitor):
     def visit_FunctionDef(self, node):
         """if found function definition, add function name to list"""
         if not node.name.startswith("__") and not node.name.startswith("_"):
-            self.method_names.append(node.name)
+            self.method_names.append(MethodName(node.name))
         self.class_names[self.class_name] = self.method_names
         self.generic_visit(node)
 

@@ -1,9 +1,9 @@
 import abc
-import re
+from typing import List
 
-import numpy as np
-
+from refaclass.base import ClassName, MethodName
 from refaclass.core.model import AbstractModel
+from refaclass.core.relation import AbstractRelation
 
 
 class AbstractOutliersDetectionMethod(abc.ABC):
@@ -13,36 +13,16 @@ class AbstractOutliersDetectionMethod(abc.ABC):
 
 
 class CosineSimilarityOutliersDetectionMethod(AbstractOutliersDetectionMethod):
-    def __init__(self, model: AbstractModel, threshold: float = 0.5):
+    def __init__(
+        self, model: AbstractModel, relation: AbstractRelation, threshold: float = 0.5
+    ):
         self.model = model
+        self.relation = relation
         self.threshold = threshold
 
-    def __cos_sim(self, v1, v2):
-        if np.linalg.norm(v1) == 0 or np.linalg.norm(v2) == 0:  # zero division
-            return 0.0
-        return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
-
-    def __format_class_name(self, class_name: str) -> str:
-        words = re.findall(r"[A-Z]+[a-z]*|[a-z]+", class_name)
-
-        result_words = []
-        for word in words:
-            if word.isupper():
-                result_words.append(word)
-            else:
-                result_words.append(word.capitalize())
-
-        result_sentence = " ".join(result_words)
-
-        result_sentence = result_sentence.lower()
-
-        formatted_class_name = result_sentence
-
-        return formatted_class_name
-
-    def find_outliers(self, class_name: str, methods: list) -> list:
-        """find outliers from methods"""
-
+    def __compare_with_other_methods(
+        self, methods: List[MethodName]
+    ) -> List[MethodName]:
         low_cosine_similarities_methods = []
 
         for i, base_method in enumerate(methods):
@@ -51,10 +31,10 @@ class CosineSimilarityOutliersDetectionMethod(AbstractOutliersDetectionMethod):
                 if i == j:
                     continue
                 base_method_cosine_similarities.append(
-                    self.__cos_sim(
-                        self.model.get_sentence_vector(base_method.replace("_", " ")),
+                    self.relation.similarity(
+                        self.model.get_sentence_vector(base_method.to_sentence()),
                         self.model.get_sentence_vector(
-                            compare_method.replace("_", " ")
+                            compare_method.to_sentence(),
                         ),
                     )
                 )
@@ -64,23 +44,43 @@ class CosineSimilarityOutliersDetectionMethod(AbstractOutliersDetectionMethod):
                 and max(base_method_cosine_similarities) < self.threshold
             ):
                 low_cosine_similarities_methods.append(base_method)
+        return low_cosine_similarities_methods
 
-        # compare with class name
+    def __compare_with_class_name(
+        self,
+        class_name: ClassName,
+        methods: List[MethodName],
+        low_cosine_similarities_method_candidates: List[MethodName],
+    ) -> List[MethodName]:
         class_name_cosine_similarities = {}
         for i, base_method in enumerate(methods):
-            class_name_cosine_similarities[base_method] = self.__cos_sim(
+            class_name_cosine_similarities[base_method] = self.relation.similarity(
                 self.model.get_sentence_vector(
-                    self.__format_class_name(class_name.replace("_", " "))
+                    class_name.to_sentence(),
                 ),
-                self.model.get_sentence_vector(base_method.replace("_", " ")),
+                self.model.get_sentence_vector(base_method.to_sentence()),
             )
         for i, low_cosine_similarities_method in enumerate(
-            low_cosine_similarities_methods
+            low_cosine_similarities_method_candidates
         ):
             if (
                 class_name_cosine_similarities[low_cosine_similarities_method]
                 > self.threshold
             ):
-                low_cosine_similarities_methods.pop(i)
+                low_cosine_similarities_method_candidates.pop(i)
+
+        return low_cosine_similarities_method_candidates
+
+    def find_outliers(
+        self, class_name: ClassName, methods: List[MethodName]
+    ) -> List[MethodName]:
+        """find outliers from methods"""
+
+        low_cosine_similarities_method_candidates = self.__compare_with_other_methods(
+            methods
+        )
+        low_cosine_similarities_methods = self.__compare_with_class_name(
+            class_name, methods, low_cosine_similarities_method_candidates
+        )
 
         return low_cosine_similarities_methods

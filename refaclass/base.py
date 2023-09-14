@@ -1,4 +1,5 @@
 # value objects
+import re
 from typing import Dict, List
 
 from refaclass.exceptions import ClassNotFoundError
@@ -58,3 +59,55 @@ class SourceCodes:
     @property
     def source_codes(self) -> List[str]:
         return list(self.source_path_and_code.values())
+
+
+class ClassName:
+    def __init__(self, class_name: str):
+        self._class_name = class_name
+
+    def __str__(self):
+        return self._class_name
+
+    @property
+    def class_name(self) -> str:
+        return self._class_name
+
+    def __format_class_name(self, class_name: str) -> str:
+        words = re.findall(r"[A-Z]+[a-z]*|[a-z]+", class_name)
+
+        result_words = []
+        for word in words:
+            if word.isupper():
+                result_words.append(word)
+            else:
+                result_words.append(word.capitalize())
+
+        result_sentence = " ".join(result_words)
+
+        result_sentence = result_sentence.lower()
+
+        formatted_class_name = result_sentence
+
+        return formatted_class_name
+
+    def to_sentence(self) -> str:
+        sentence_class_name = self.__format_class_name(
+            self.class_name.replace("_", " ")
+        )
+        return sentence_class_name
+
+
+class MethodName:
+    def __init__(self, method_name: str):
+        self._method_name = method_name
+
+    def __str__(self):
+        return self._method_name
+
+    @property
+    def method_name(self) -> str:
+        return self._method_name
+
+    def to_sentence(self) -> str:
+        sentence_method_name = self.method_name.replace("_", " ")
+        return sentence_method_name

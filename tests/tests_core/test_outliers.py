@@ -1,8 +1,10 @@
 import unittest
 import unittest.mock
 
+from refaclass.base import ClassName, MethodName
 from refaclass.core.model import AbstractModel
 from refaclass.core.outliers import CosineSimilarityOutliersDetectionMethod
+from refaclass.core.relation import AbstractRelation
 
 
 class ModelStubSameVec(AbstractModel):
@@ -21,43 +23,44 @@ class ModelStubDifferentVec(AbstractModel):
         return 0.4
 
 
-def mock_cos_sim(v1, v2):
-    return 0.4
+class RelationStub(AbstractRelation):
+    def get_distance(self, vector1, vector2) -> float:
+        return 0.0
+
+    def similarity(self, vector1, vector2) -> float:
+        return 0.4
 
 
-def mock_cos_sim_high(v1, v2):
-    return 0.6
+class RelationHighStub(AbstractRelation):
+    def get_distance(self, vector1, vector2) -> float:
+        return 0.0
+
+    def similarity(self, vector1, vector2) -> float:
+        return 0.6
 
 
 class TestCosineSimilarityOutliersDetectionMethod(unittest.TestCase):
     def setUp(self):
         self.outliers_detection_methods = CosineSimilarityOutliersDetectionMethod(
-            model=ModelStubDifferentVec(), threshold=0.5
+            model=ModelStubDifferentVec(), relation=RelationStub(), threshold=0.5
         )
 
-    @unittest.mock.patch(
-        "refaclass.core.outliers.CosineSimilarityOutliersDetectionMethod._CosineSimilarityOutliersDetectionMethod__cos_sim",
-        side_effect=mock_cos_sim,
-    )
-    def test_find_outliers(self, mock_cos_sim):
-        methods = ["method1", "method2", "method3"]
+    def test_find_outliers(self):
+        methods = [MethodName("method1"), MethodName("method2"), MethodName("method3")]
         outliers_methods = self.outliers_detection_methods.find_outliers(
-            class_name="class_name", methods=methods
+            class_name=ClassName("class_name"), methods=methods
         )
-        self.assertEqual(outliers_methods, ["method1", "method2", "method3"])
+        self.assertEqual(len(outliers_methods), 3)
+        self.assertEqual(outliers_methods[0].method_name, "method1")
+        self.assertEqual(outliers_methods[1].method_name, "method2")
+        self.assertEqual(outliers_methods[2].method_name, "method3")
 
-        self.assertEqual(mock_cos_sim.call_count, 9)
-
-    @unittest.mock.patch(
-        "refaclass.core.outliers.CosineSimilarityOutliersDetectionMethod._CosineSimilarityOutliersDetectionMethod__cos_sim",
-        side_effect=mock_cos_sim_high,
-    )
-    def test_find_outliers_with_one_method(self, mock_cos_sim_high):
+    def test_find_outliers_with_one_method(self):
         self.outliers_detection_methods = CosineSimilarityOutliersDetectionMethod(
-            model=ModelStubSameVec(), threshold=0.5
+            model=ModelStubSameVec(), relation=RelationHighStub(), threshold=0.5
         )
-        methods = ["method1", "method2", "method3"]
+        methods = [MethodName("method1"), MethodName("method2"), MethodName("method3")]
         outliers_methods = self.outliers_detection_methods.find_outliers(
-            class_name="class_name", methods=methods
+            class_name=ClassName("class_name"), methods=methods
         )
         self.assertEqual(outliers_methods, [])

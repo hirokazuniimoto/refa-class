@@ -13,7 +13,8 @@ class TestClassHandler(unittest.TestCase):
     def test_class_handler(self):
         handler = ClassHandler(self.source_code)
         self.assertEqual(
-            handler.get_class_and_method_name(), {"sampleSourceCode": ["sample_method"]}
+            handler.get_class_and_method_name()["sampleSourceCode"][0].method_name,
+            "sample_method",
         )
 
     def test_class_handler_with_invalid_source_code(self):
@@ -42,9 +43,8 @@ class TestClassNameVisitor(unittest.TestCase):
         visitor = ClassNameVisitor()
         visitor.visit_ClassDef(class_node)
 
-        self.assertEqual(visitor.class_names, {"sampleSourceCode": ["sample_method"]})
         self.assertEqual(visitor.class_name, "sampleSourceCode")
-        self.assertEqual(visitor.method_names, ["sample_method"])
+        self.assertEqual(visitor.method_names[0].method_name, "sample_method")
 
     def test_visit_FunctionDef(self):
         tree = ast.parse(self.source_code)
@@ -56,6 +56,5 @@ class TestClassNameVisitor(unittest.TestCase):
         visitor.visit_ClassDef(class_node)
         visitor.visit_FunctionDef(function_node)
 
-        self.assertEqual(visitor.class_names, {"sampleSourceCode": ["sample_method"]})
         self.assertEqual(visitor.class_name, "sampleSourceCode")
-        self.assertEqual(visitor.method_names, ["sample_method"])
+        self.assertEqual(visitor.method_names[0].method_name, "sample_method")

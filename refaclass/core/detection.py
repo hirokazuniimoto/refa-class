@@ -1,6 +1,6 @@
 import abc
 
-from refaclass.base import classSource
+from refaclass.base import ClassName, classSource
 from refaclass.core.outliers import AbstractOutliersDetectionMethod
 
 
@@ -28,7 +28,7 @@ class SingleResponsibilityPrincipleDetector(AbstractDetector):
         methods = class_source.method_names
 
         outliers_methods = self.outliers_detection_methods.find_outliers(
-            class_name=class_source.class_name, methods=methods
+            class_name=ClassName(class_source.class_name), methods=methods
         )
 
         return outliers_methods
