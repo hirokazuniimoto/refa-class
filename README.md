@@ -1,4 +1,5 @@
 [![<ORG_NAME>](https://circleci.com/gh/hirokazuniimoto/refa-class.svg?style=svg)](https://app.circleci.com/pipelines/github/hirokazuniimoto/refa-class)
+[![Downloads](https://static.pepy.tech/badge/refaclass)](https://pepy.tech/project/refaclass)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/refaclass)
 ![PyPI - Version](https://img.shields.io/pypi/v/refaclass)
 ![PyPI - Format](https://img.shields.io/pypi/format/refaclass)
